@@ -15,9 +15,9 @@ public class PlayerLogin implements Listener {
     public void onLogin(PlayerLoginEvent e){
         Player p = e.getPlayer();
         if(FirstLoginCheck.isFirstLogin(p)){
-            InventoryRestrict.DefaultRestrict(p);
+            InventoryRestrict.defaultRestrict(p);
         }else{
-
+            InventoryRestrict.getRestriction(p);
         }
     }
 }
