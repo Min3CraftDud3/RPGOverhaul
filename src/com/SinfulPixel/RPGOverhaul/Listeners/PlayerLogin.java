@@ -20,9 +20,9 @@ public class PlayerLogin implements Listener {
         Player p = e.getPlayer();
         if(!FirstLoginCheck.isFirstLogin(p)){
             ConfigMgr.createPlayerDataFile(p);
-            InventoryRestrict.defaultRestrict(p);
+            InventoryRestrict.restrictInventory(p,InventoryRestrict.getRestriction(p));
         }else{
-            InventoryRestrict.getRestriction(p);
+            InventoryRestrict.restrictInventory(p, InventoryRestrict.getRestriction(p));
         }
     }
 }

@@ -2,6 +2,7 @@ package com.SinfulPixel.RPGOverhaul;
 
 import com.SinfulPixel.RPGOverhaul.Commands.ReloadCommand;
 import com.SinfulPixel.RPGOverhaul.Errors.ThrowError;
+import com.SinfulPixel.RPGOverhaul.Listeners.InventoryClick;
 import com.SinfulPixel.RPGOverhaul.Listeners.PlayerLogin;
 import com.SinfulPixel.RPGOverhaul.Utils.ConfigMgr;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +18,7 @@ public class RPGOverhaul extends JavaPlugin {
     public void onEnable(){
         //Register Events
         getServer().getPluginManager().registerEvents(new PlayerLogin(this),this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(this),this);
         //Register Commands
         getCommand("rpgreload").setExecutor(new ReloadCommand(this));
         //Create Configs
