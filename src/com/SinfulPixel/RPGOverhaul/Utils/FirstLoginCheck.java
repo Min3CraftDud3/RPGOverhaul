@@ -7,6 +7,6 @@ import org.bukkit.entity.Player;
  */
 public class FirstLoginCheck {
     public static Boolean isFirstLogin(Player p){
-        return null;
+        return ConfigMgr.hasFile(p);
     }
 }

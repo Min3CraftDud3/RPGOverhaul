@@ -1,6 +1,7 @@
 package com.SinfulPixel.RPGOverhaul.Listeners;
 
 import com.SinfulPixel.RPGOverhaul.Restrictions.InventoryRestrict;
+import com.SinfulPixel.RPGOverhaul.Utils.ConfigMgr;
 import com.SinfulPixel.RPGOverhaul.Utils.FirstLoginCheck;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,7 @@ public class PlayerLogin implements Listener {
     public void onLogin(PlayerLoginEvent e){
         Player p = e.getPlayer();
         if(FirstLoginCheck.isFirstLogin(p)){
+            ConfigMgr.createPlayerDataFile(p);
             InventoryRestrict.defaultRestrict(p);
         }else{
             InventoryRestrict.getRestriction(p);

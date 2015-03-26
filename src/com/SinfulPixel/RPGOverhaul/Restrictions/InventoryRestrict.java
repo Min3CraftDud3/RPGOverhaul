@@ -1,6 +1,6 @@
 package com.SinfulPixel.RPGOverhaul.Restrictions;
 
-import com.SinfulPixel.RPGOverhaul.Errors.ThrowError;
+import com.SinfulPixel.RPGOverhaul.Utils.ConfigMgr;
 import org.bukkit.entity.Player;
 
 /**
@@ -13,14 +13,7 @@ public class InventoryRestrict {
     public static void lockInventory(Player p){}
     public static void destroyInventory(Player p){}
     public static RestrictTypes getRestriction(Player p){
-        RestrictTypes rt = null;
-        int slots = 0;
-        if(RestrictTypes.intToType(slots)==null){
-            ThrowError.ThrowError("Cannot find RestrictTypes for integer"+slots);
-        }else{
-            rt = RestrictTypes.intToType(slots);
-        }
-        return rt;
+        return ConfigMgr.getRestriction(p);
     }
     public static void setRestriction(Player p){}
 
