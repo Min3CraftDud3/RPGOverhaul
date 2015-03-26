@@ -1,0 +1,9 @@
+name: RPGOverhaul
+main: com.SinfulPixel.RPGOverhaul.RPGOverhaul
+version: 1.0
+description: A Complete RPG Overhaul for Minecraft
+author: Min3CraftDud3
+website: http://www.SinfulPixel.com
+commands:
+  rpgreload:
+    description: "Reloads RPGOverhaul"

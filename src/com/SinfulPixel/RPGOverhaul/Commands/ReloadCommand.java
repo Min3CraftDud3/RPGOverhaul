@@ -14,7 +14,9 @@ public class ReloadCommand implements CommandExecutor{
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        //Reload Plugin
+        if(cmd.getName().equalsIgnoreCase("rpgreload")){
+            //Reload Plugin
+        }
         return false;
     }
 }
