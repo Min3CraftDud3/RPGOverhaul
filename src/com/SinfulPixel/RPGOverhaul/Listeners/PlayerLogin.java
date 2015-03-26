@@ -18,7 +18,7 @@ public class PlayerLogin implements Listener {
     @EventHandler
     public void onLogin(PlayerLoginEvent e){
         Player p = e.getPlayer();
-        if(FirstLoginCheck.isFirstLogin(p)){
+        if(!FirstLoginCheck.isFirstLogin(p)){
             ConfigMgr.createPlayerDataFile(p);
             InventoryRestrict.defaultRestrict(p);
         }else{
