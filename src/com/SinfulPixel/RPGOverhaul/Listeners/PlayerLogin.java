@@ -4,6 +4,7 @@ import com.SinfulPixel.RPGOverhaul.RPGOverhaul;
 import com.SinfulPixel.RPGOverhaul.Restrictions.InventoryRestrict;
 import com.SinfulPixel.RPGOverhaul.Utils.ConfigMgr;
 import com.SinfulPixel.RPGOverhaul.Utils.FirstLoginCheck;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,12 +18,22 @@ public class PlayerLogin implements Listener {
     public PlayerLogin(RPGOverhaul plugin){this.plugin=plugin;}
     @EventHandler
     public void onLogin(PlayerLoginEvent e){
-        Player p = e.getPlayer();
+        final Player p = e.getPlayer();
         if(!FirstLoginCheck.isFirstLogin(p)){
             ConfigMgr.createPlayerDataFile(p);
-            InventoryRestrict.restrictInventory(p,InventoryRestrict.getRestriction(p));
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    InventoryRestrict.restrictInventory(p,InventoryRestrict.getRestriction(p));
+                }
+            },20);
         }else{
-            InventoryRestrict.restrictInventory(p, InventoryRestrict.getRestriction(p));
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    InventoryRestrict.restrictInventory(p, InventoryRestrict.getRestriction(p));
+                }
+            }, 20);
         }
     }
 }

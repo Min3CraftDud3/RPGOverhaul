@@ -16,7 +16,7 @@ public class InventoryClick implements Listener {
     public void onClick(InventoryClickEvent e){
         try {
             if (e.getCurrentItem().hasItemMeta()) {
-                if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.MAGIC + "")) {
+                if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.MAGIC + "")&& !e.getWhoClicked().isOp()) {
                     e.setCancelled(true);
                 }
             }

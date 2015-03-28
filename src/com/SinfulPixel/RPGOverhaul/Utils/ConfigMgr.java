@@ -36,6 +36,7 @@ public class ConfigMgr {
                 fc.set("Player.IP", ip);
                 fc.set("Player.JoinDate",dateFormat.format(date));
                 fc.set("Player.InventoryType", RestrictTypes.getValue(RestrictTypes.DEAFULT));
+                fc.set("Player.CarriedSoulbounds",0);
                 fc.save(plrCfg);
             }
         }catch(Exception e) {
@@ -58,6 +59,27 @@ public class ConfigMgr {
             if (f.exists()) {
                 FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
                 fc.set("Player.InventoryType", type);
+                fc.save(f);
+            }
+        }catch(Exception e){
+            ThrowError.ThrowError("Error Saving Data to Player: "+p.getName()+"'s File.");
+        }
+    }
+    public static int getSoulbounds(Player p){
+        int numOfSB = 0;
+        File f = new File(plugin.getDataFolder() + File.separator + "Player Data" + File.separator + p.getUniqueId() + ".yml");
+        if(f.exists()) {
+            FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
+            numOfSB = fc.getInt("Player.CarriedSoulbounds");
+        }
+        return numOfSB;
+    }
+    public static void setSoulbounds(Player p){
+        try {
+            File f = new File(plugin.getDataFolder() + File.separator + "Player Data" + File.separator + p.getUniqueId() + ".yml");
+            if (f.exists()) {
+                FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
+                fc.set("Player.CarriedSoulbounds",fc.getInt("Player.CarriedSoulbounds")+1);
                 fc.save(f);
             }
         }catch(Exception e){
