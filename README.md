@@ -6,5 +6,5 @@ TO-DO's:
 * Trade System
 * Inventory Restrictions
 * Enchantments
-* SoulBound Items
+* ~~SoulBound Items~~
 
