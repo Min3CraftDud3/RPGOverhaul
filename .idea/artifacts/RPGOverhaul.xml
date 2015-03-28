@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="RPGOverhaul">
-    <output-path>$PROJECT_DIR$/out/artifacts/RPGOverhaul</output-path>
-    <root id="archive" name="RPGOverhaul.jar">
-      <element id="module-output" name="RPGOverhaul" />
-      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
-    </root>
-  </artifact>
-</component>
