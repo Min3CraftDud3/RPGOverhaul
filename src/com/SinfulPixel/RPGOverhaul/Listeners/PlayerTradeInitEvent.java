@@ -16,7 +16,7 @@ public class PlayerTradeInitEvent implements Listener {
     public PlayerTradeInitEvent(RPGOverhaul plugin){this.plugin=plugin;}
     @EventHandler
     public void onSheakClick(PlayerInteractEntityEvent e){
-        Player p = e.getPlayer();
+        final Player p = e.getPlayer();
         if(p.isSneaking()){
             if(e.getRightClicked() instanceof Player) {
                 Player target = (Player) e.getRightClicked();
