@@ -3,10 +3,7 @@ package com.SinfulPixel.RPGOverhaul;
 import com.SinfulPixel.RPGOverhaul.Commands.ReloadCommand;
 import com.SinfulPixel.RPGOverhaul.Commands.SoulBoundCommand;
 import com.SinfulPixel.RPGOverhaul.Errors.ThrowError;
-import com.SinfulPixel.RPGOverhaul.Listeners.BlockPlace;
-import com.SinfulPixel.RPGOverhaul.Listeners.InventoryClick;
-import com.SinfulPixel.RPGOverhaul.Listeners.PlayerLogin;
-import com.SinfulPixel.RPGOverhaul.Listeners.SoulBoundChatEvent;
+import com.SinfulPixel.RPGOverhaul.Listeners.*;
 import com.SinfulPixel.RPGOverhaul.Restrictions.InventoryRestrict;
 import com.SinfulPixel.RPGOverhaul.Utils.ConfigMgr;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +23,9 @@ public class RPGOverhaul extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new InventoryClick(this),this);
         getServer().getPluginManager().registerEvents(new BlockPlace(this),this);
         getServer().getPluginManager().registerEvents(new SoulBoundChatEvent(this),this);
+        getServer().getPluginManager().registerEvents(new ItemDropEvent(this),this);
+        getServer().getPluginManager().registerEvents(new PlayerTradeInventoryInteractEvent(this),this);
+        getServer().getPluginManager().registerEvents(new PlayerTradeInitEvent(this),this);
         //Register Commands
         getCommand("rpgreload").setExecutor(new ReloadCommand(this));
         getCommand("soulbound").setExecutor(new SoulBoundCommand(this));
