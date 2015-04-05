@@ -86,6 +86,18 @@ public class ConfigMgr {
             ThrowError.ThrowError("Error Saving Data to Player: "+p.getName()+"'s File.");
         }
     }
+    public static void setSoulbounds(Player p,int i){
+        try {
+            File f = new File(plugin.getDataFolder() + File.separator + "Player Data" + File.separator + p.getUniqueId() + ".yml");
+            if (f.exists()) {
+                FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
+                fc.set("Player.CarriedSoulbounds",fc.getInt("Player.CarriedSoulbounds")-i);
+                fc.save(f);
+            }
+        }catch(Exception e){
+            ThrowError.ThrowError("Error Saving Data to Player: "+p.getName()+"'s File.");
+        }
+    }
     public static void createPlayerDataFolder(){
         File dir = new File(plugin.getDataFolder()+File.separator+"Player Data");
         if(!dir.exists()){

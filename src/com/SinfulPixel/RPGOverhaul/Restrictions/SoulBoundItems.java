@@ -14,16 +14,20 @@ import java.util.List;
  * Created by Min3 on 3/26/2015.
  */
 public class SoulBoundItems{
-    public static Inventory soulboundGUI = Bukkit.createInventory(null, 9, ChatColor.GOLD + "Which Item to Remove.");
+    public static Inventory soulboundGUI = Bukkit.createInventory(null, 9, ChatColor.BLACK + "Which Item to Remove.");
     public static ItemStack makeItemSoulbound(ItemStack i){
         ItemStack it = i;
         List<String> lore = new ArrayList<String>();
-        for(String s: it.getItemMeta().getLore()){
-            lore.add(s);
+        if(it.getItemMeta().hasLore()) {
+            for (String s : it.getItemMeta().getLore()) {
+                lore.add(s);
+            }
         }
         lore.add(ChatColor.DARK_GRAY+"SoulBound");
         ItemMeta im = it.getItemMeta();
-        im.getLore().clear();
+        if(it.getItemMeta().hasLore()) {
+            im.getLore().clear();
+        }
         im.setLore(lore);
         it.setItemMeta(im);
         return it;
@@ -31,6 +35,9 @@ public class SoulBoundItems{
     }
     public static void destroySoulboundItem(Player p){
         p.getInventory().removeItem(p.getItemInHand());
+    }
+    public static void destroyClickedSoulboundItem(Player p, ItemStack it){
+        p.getInventory().removeItem(it);
     }
     public ItemStack removeItemSoulbound(Player p, ItemStack i){
         ItemStack it = i;
@@ -48,25 +55,30 @@ public class SoulBoundItems{
         return it;
     }
     public static ItemStack[] getSoulboundItems(Player p){
-        List<ItemStack> stack = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> stack = new ArrayList<ItemStack>();
         for(ItemStack i : p.getInventory().getContents()){
-            if(i.hasItemMeta()){
-                if(i.getItemMeta().getLore().contains("SoulBound")){
-                    stack.add(i);
+            if(i != null) {
+                if (i.hasItemMeta()) {
+                    if (i.getItemMeta().hasLore()) {
+                        if (i.getItemMeta().getLore().contains(ChatColor.DARK_GRAY+"SoulBound")) {
+                            stack.add(i);
+                        }
+                    }
                 }
             }
         }
-        return (ItemStack[])stack.toArray();
+        return stack.toArray(new ItemStack[stack.size()]);
     }
     public static void createGUI(Player p){
         ItemStack[] set = getSoulboundItems(p);
         int size = set.length;
         int index = 3;
         if(size>0){
-            for(ItemStack i : set){
-                soulboundGUI.setItem(index,i);
+            for(int i=0;i<size;i++){
+                soulboundGUI.setItem(index,set[i]);
                 index++;
             }
         }
+        p.openInventory(soulboundGUI);
     }
 }

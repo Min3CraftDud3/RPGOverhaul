@@ -20,12 +20,8 @@ public class InventoryRestrict {
         bim.setDisplayName(ChatColor.MAGIC+"");
         b.setItemMeta(bim);
         for(ItemStack i:p.getInventory().getContents()){
-            if(i!=null) {
-                if (i.hasItemMeta()) {
-                    if (i.getItemMeta().getDisplayName().equals(ChatColor.MAGIC + "")) {
-                        p.getInventory().removeItem(i);
-                    }
-                }
+            if(i==b) {
+                p.getInventory().removeItem(i);
             }
         }
         switch(type){

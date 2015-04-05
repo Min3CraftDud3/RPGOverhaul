@@ -1,5 +1,6 @@
 package com.SinfulPixel.RPGOverhaul.Commands;
 
+import com.SinfulPixel.RPGOverhaul.Listeners.SoulBoundChatEvent;
 import com.SinfulPixel.RPGOverhaul.RPGOverhaul;
 import com.SinfulPixel.RPGOverhaul.Restrictions.SoulBoundItems;
 import com.SinfulPixel.RPGOverhaul.Utils.ConfigMgr;
@@ -28,6 +29,7 @@ public class SoulBoundCommand implements CommandExecutor {
                         ItemStack i = SoulBoundItems.makeItemSoulbound(p.getItemInHand());
                         p.getInventory().remove(p.getItemInHand());
                         p.getInventory().addItem(i);
+                        ConfigMgr.setSoulbounds(p);
                     }
                 } else if(args.length==1) {
                     if (args[0].equalsIgnoreCase("info")) {
@@ -37,10 +39,11 @@ public class SoulBoundCommand implements CommandExecutor {
                         p.sendMessage(ChatColor.DARK_AQUA + "You currently have " + ChatColor.YELLOW + ConfigMgr.getSoulbounds(p) + ChatColor.DARK_AQUA + " items.");
                     }else if(args[0].equalsIgnoreCase("destroy")){
                         p.sendMessage(ChatColor.GOLD+"======[ Soulbound Items Destroy ]======");
-                        p.sendMessage(ChatColor.DARK_AQUA+"Do you wish to destroy: "+ChatColor.YELLOW+p.getItemInHand().getItemMeta().getDisplayName()+ChatColor.DARK_AQUA+"?");
+                        p.sendMessage(ChatColor.DARK_AQUA+"Do you wish to destroy: "+ChatColor.YELLOW+p.getItemInHand().getType().name().replace("_"," ")+ChatColor.DARK_AQUA+"?");
                         p.sendMessage(ChatColor.GREEN+"Type continue - to destroy.");
                         p.sendMessage(ChatColor.DARK_AQUA+"or");
                         p.sendMessage(ChatColor.RED+"Type cancel - to cancel.");
+                        SoulBoundChatEvent.canInterrupt.put(p,"SOULBOUND");
                     }
                 }
             }
