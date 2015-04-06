@@ -7,4 +7,5 @@ TO-DO's:
 * ~~Inventory Restrictions~~
 * Enchantments
 * ~~SoulBound Items~~
+* Dropped Loot Tables & Implementation
 

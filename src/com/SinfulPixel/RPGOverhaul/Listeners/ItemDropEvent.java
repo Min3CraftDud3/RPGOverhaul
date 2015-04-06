@@ -14,9 +14,14 @@ public class ItemDropEvent implements Listener {
     public ItemDropEvent(RPGOverhaul plugin){this.plugin=plugin;}
     @EventHandler
     public void onItemDrop(PlayerDropItemEvent e){
-        if(!e.getPlayer().isOp()){
-            e.setCancelled(true);
-            e.getPlayer().sendMessage(ChatColor.RED+"You cannot drop items.");
+        if(e.getItemDrop().getItemStack().hasItemMeta()){
+            if(e.getItemDrop().getItemStack().getItemMeta().hasLore()){
+                if(e.getItemDrop().getItemStack().getItemMeta().getLore().contains(ChatColor.DARK_GRAY+"SoulBound"));
+                if(!e.getPlayer().isOp()) {
+                    e.getPlayer().sendMessage(ChatColor.RED+"You cannot drop soulbound items.");
+                    e.setCancelled(true);
+                }
+            }
         }
     }
 }
