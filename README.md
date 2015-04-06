@@ -8,4 +8,5 @@ TO-DO's:
 * Enchantments
 * ~~SoulBound Items~~
 * Dropped Loot Tables & Implementation
+* Custom Structures.
 

@@ -1,5 +1,6 @@
 package com.SinfulPixel.RPGOverhaul;
 
+import com.SinfulPixel.RPGOverhaul.Commands.ItemSaveCommand;
 import com.SinfulPixel.RPGOverhaul.Commands.ReloadCommand;
 import com.SinfulPixel.RPGOverhaul.Commands.SoulBoundCommand;
 import com.SinfulPixel.RPGOverhaul.Errors.ThrowError;
@@ -32,6 +33,7 @@ public class RPGOverhaul extends JavaPlugin {
         //Register Commands
         getCommand("rpgreload").setExecutor(new ReloadCommand(this));
         getCommand("soulbound").setExecutor(new SoulBoundCommand(this));
+        getCommand("saveitem").setExecutor(new ItemSaveCommand(this));
         //Create Configs
         try{
             MakeDir();

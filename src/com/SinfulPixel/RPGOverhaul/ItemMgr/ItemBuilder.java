@@ -35,6 +35,7 @@ public class ItemBuilder {
         return this;
     }
     public ItemBuilder addLore(String line){
+        System.out.println(line);
         lore.add(ChatColor.translateAlternateColorCodes('&', line));
         return this;
     }
@@ -50,7 +51,7 @@ public class ItemBuilder {
         itemStack.setData(new MaterialData(itemStack.getType(), (byte) data));
         return this;
     }
-    public ItemBuilder enchant(Enchantment enchantment,int level){
+    public ItemBuilder addEnchant(Enchantment enchantment,int level){
         itemStack.addUnsafeEnchantment(enchantment, level);
         return this;
     }

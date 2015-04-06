@@ -18,15 +18,16 @@ public class LootMgr {
     static RPGOverhaul plugin;
     public LootMgr(RPGOverhaul plugin){this.plugin=plugin;}
     public static void createLootFile()throws IOException{
-        System.out.println("Creating Loot Table Directory.");
+
         File dir = new File(plugin.getDataFolder()+File.separator+"LootTable");
         if(!dir.exists()){
+            System.out.println("Creating Loot Table Directory.");
             dir.mkdir();
+            System.out.println("Creating Loot Table Directory...DONE!");
         }
-        System.out.println("Creating Loot Table Directory...DONE!");
-        System.out.println("Creating Loot Table File.");
         File loot = new File(plugin.getDataFolder()+File.separator+"LootTable"+File.separator+"LootTable.yml");
         if(!loot.exists()){
+            System.out.println("Creating Loot Table File.");
             loot.createNewFile();
             FileConfiguration fc = YamlConfiguration.loadConfiguration(loot);
             fc.set("RPGOverhaul.LootTable.Header","==========[ Mob Loot Tables ]==========");
@@ -35,15 +36,16 @@ public class LootMgr {
                 fc.set("RPGOverhaul.LootTable."+e.name()+".2", new ItemStack(Material.DIRT,1));
             }
             fc.save(loot);
+            System.out.println("Creating Loot Table File...DONE!");
         }
-        System.out.println("Creating Loot Table File...DONE!");
     }
     public static ItemStack[] getLootTable(EntityType e){
         ArrayList<ItemStack> rt = new ArrayList<ItemStack>();
         File loot = new File(plugin.getDataFolder()+File.separator+"LootTable"+File.separator+"LootTable.yml");
         if(loot.exists()) {
             FileConfiguration fc = YamlConfiguration.loadConfiguration(loot);
-            for(int i=0;i<300;i++){
+            int ent = fc.getConfigurationSection("RPGOverhaul.LootTable."+e.name()).getKeys(false).size();
+            for(int i=1;i<ent;i++){
                 rt.add(fc.getItemStack("RPGOverhaul.LootTable."+e.name()+"."+i));
             }
         }

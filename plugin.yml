@@ -9,3 +9,5 @@ commands:
     description: "Reloads RPGOverhaul"
   soulbound:
     description: "Bring up the soulbound item actions."
+  saveitem:
+    description: "Saves Item to File."

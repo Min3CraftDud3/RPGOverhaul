@@ -1,5 +1,6 @@
 package com.SinfulPixel.RPGOverhaul.Listeners;
 
+import com.SinfulPixel.RPGOverhaul.LootTable.LootMgr;
 import com.SinfulPixel.RPGOverhaul.RPGOverhaul;
 import com.SinfulPixel.RPGOverhaul.Restrictions.InventoryRestrict;
 import com.SinfulPixel.RPGOverhaul.Restrictions.SoulBoundItems;
@@ -9,10 +10,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Random;
+
 /**
  * Created by Min3 on 4/5/2015.
  */
 public class MobDeathEvent implements Listener {
+    Random rand = new Random();
     RPGOverhaul plugin;
     public MobDeathEvent(RPGOverhaul plugin){this.plugin=plugin;}
     @EventHandler
@@ -26,8 +30,19 @@ public class MobDeathEvent implements Listener {
                 ((Player) e.getEntity()).getInventory().addItem(i);
             }
         }else{
-            //Chance to drop special items
+            int n = rand.nextInt(100);
+            System.out.println(n);
+            if(n<30){
+                ItemStack[] lootTable = LootMgr.getLootTable(e.getEntityType());
+                int size = lootTable.length;
+                System.out.println(size);
+                e.getDrops().clear();
+                e.getDrops().add(lootTable[rand.nextInt(size)]);
+                e.setDroppedExp(0);
+            }else {
+                e.getDrops().clear();
+                e.setDroppedExp(0);
+            }
         }
-
     }
 }
